@@ -2,14 +2,14 @@ addEventListener("DOMContentLoaded", async function () {
     // Check which html is active in the iframe
     let previewcontent = document.getElementById("preview").src;
     if (previewcontent.includes("default.html")) {
-        await logImagesInFolder("/Arbete");
+        await logImagesInFolder("/");
         console.log("Found HTML files:", foundFiles);
         foundFiles.sort();
         createButtons();
         load();
     } else {
         console.log("phososhop");
-        await logImagesInFolder("/Arbete/photoshop", ".png");
+        await logImagesInFolder("/photoshop", ".png");
         console.log("Found png files:", foundFiles);
         foundFiles.sort();
         createButtons();
@@ -33,7 +33,6 @@ const logImagesInFolder = async (folderPath, type = "index.html") => {
             const href = link.getAttribute("href");
 
             if (
-                href.includes("/Arbete/") &&
                 !href.includes("samlingssida") &&
                 !href.includes(".")
             ) {

@@ -1,0 +1,77 @@
+body {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin: 0;
+    font-family: "Arial";
+}
+.gray {
+    background-color: rgb(37, 37, 37);
+}
+div.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+div.top {
+    display: flex;
+    height: 80px;
+    width: 100vw;
+    margin-top: 10px;
+    justify-content: center;
+}
+div.nav {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+    margin: 20, 20 0, 20;
+}
+div.nav a {
+    color: white;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+div.nav a:hover {
+    color: black;
+    background-color: white;
+}
+div.center {
+    display: flex;
+    width: 900px;
+    align-items: center;
+}
+div.middle {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex: 4;
+}
+div.three {
+    width: 100%;
+    display: flex;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: space-between;
+}
+div.bottom {
+    justify-content: center;
+    flex: 4;
+    display: flex;
+    flex-direction: row;
+}
+div.text {
+    width: 256px;
+}
+div.text img {
+    float: left;
+    margin: 7px;
+}
+div.footer {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255, 255, 255);
+}

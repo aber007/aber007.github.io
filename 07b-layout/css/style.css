@@ -1,0 +1,100 @@
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+div.viewarea {
+  width: 100vw;
+  height: auto;
+  background-color: rgb(227, 234, 244);
+  margin: 0 auto;
+}
+div.topinfo {
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+div.mainarea {
+  position: relative;
+  top: 140px;
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: row;
+}
+div.header {
+  z-index: 2;
+  background-color: rgb(241, 241, 241);
+  color: black;
+  height: 75px;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+div.navbar {
+  box-shadow: black 0px 0px 10px;
+  z-index: 1;
+  background-color: rgb(42, 42, 42);
+  color: white;
+  height: 25px;
+  width: auto;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* hide scroll bar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbutton {
+  position: fixed;
+  color: red;
+  background-color: white;
+  font-size: 40px;
+  padding: 15px;
+  top: 85px;
+  right: 0px;
+}
+.links {
+  padding: 25px;
+  justify-content: space-around;
+  color: rgb(237, 237, 237);
+  text-transform: uppercase;
+}
+.links:hover {
+  background-color: rgb(0, 228, 57);
+  box-sizing: border-box;
+  box-shadow: 0px 0 8px rgb(0, 0, 0) inset;
+  color: black;
+}
+div.sidebar {
+  background-color: rgb(241, 241, 241);
+  color: black;
+  flex: 1;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow-y: auto;
+  text-align: center;
+}
+div.main {
+  z-index: 2;
+  background-color: rgb(241, 241, 241);
+  color: black;
+  flex: 5;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  overflow-y: auto;
+  text-align: center;
+}
+div.text {
+  color: green;
+  width: 60px;
+  height: auto;
+}

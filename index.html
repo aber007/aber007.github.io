@@ -1,1 +1,39 @@
-<h1>My Portfolio </h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Nav</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <script type="module" src="./samlingssida/sites.js"></script>
+        <link rel="stylesheet" href="./samlingssida/css/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="top" id="top">
+                <div class="nav_top" >
+                    <a href="#">Home</a>
+                    <a href="#">Sites</a>
+                    <a href="./samlingssida/html/photoshop.html">Photoshop</a>
+                </div>
+                <div class="logo"></div>
+                <div class="search">
+                    <input type="text" id="search" placeholder="Search..." />
+                    <button id="search_button"></button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="sidebar">
+                    <div class="nav_left" id="nav_left">
+                        <div class="dot"></div>
+                        <div class="arrow" id="arrow"></div>
+                    </div>
+                </div>
+                <div class="main">
+                    <iframe id="preview" src="./samlingssida/html/default.html" frameborder="0" class="site_preview"></iframe>
+                </div>
+            </div>
+            <div class="footer"></div>
+        </div>
+    </body>
+</html>

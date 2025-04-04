@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.png" />
+    <title>Hållbar konsumtion och produktion - Global Vision</title>
+    <!-- Link to the CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Icon -->
+  </head>
+  <body class="main_body">
+    <!-- Background image -->
+    <img src="img/main.png" alt="background" class="background" />
+    <div class="top_bar">
+      <!-- Navigation Links -->
+      <a class="home link false" href="" target="_self">Hem </a>
+      <a class="sverige link" href="htm/sverige.htm" target="_self">Sverige</a>
+      <a class="delmal link" href="htm/delmol.htm" target="_self">Delmål</a>
+      <a class="kontakt link" href="htm/kontakt.htm" target="_self">Kontakt</a>
+    </div>
+    <!-- Animation links -->
+    <img src="img/delmal.png" alt="background" class="background down" />
+    <div class="bottom_bar">
+      <p class="home link bottom">Hem</p>
+      <p class="sverige link bottom">Sverige</p>
+      <p class="delmal link bottom">Delmål</p>
+      <p class="kontakt link bottom">Kontakt</p>
+    </div>
+    <script>
+      // Set the down class to be placed at window.innerHeight
+      const down = document.querySelector(".down");
+      down.style.top = window.innerHeight + 50 + "px";
+      // Select the .down element and .bottom_bar container
+      const bottomBar = document.querySelector(".bottom_bar");
+      const bottom = document.querySelectorAll(".bottom");
+
+      // Update .bottom_bar position based on the .down element's top
+      const updateBottomBarPosition = () => {
+        bottom.forEach((text) => {
+          text.style.color = "black";
+        });
+
+      };
+      window.addEventListener("load", () => {
+        const downTop = down.getBoundingClientRect().top + window.scrollY;
+        bottomBar.style.top = downTop + 0 + "px";
+      });
+
+
+      // Adjust the position on page load and when the window is resized
+      window.addEventListener("load", updateBottomBarPosition);
+      window.addEventListener("resize", updateBottomBarPosition);
+
+
+      
+    </script>
+    <!-- Animation -->
+    <div class="arrow">
+      <img id="scrollButton" src="img/arrow.png" alt="arrow" class="arrow_img" />
+      <iframe id="preloadFrame" src="htm/delmol.htm" style="display: none;"></iframe>
+    </div>
+      <script>
+        // Scroll to the next page when the arrow is clicked
+        const scrollButton = document.getElementById("scrollButton");
+
+        scrollButton.addEventListener("click", () => {
+          const onScrollEnd = () => {
+            window.open("htm/delmol.htm", "_self");
+            window.removeEventListener("scrollend", onScrollEnd); // Clean up the listener
+          };
+
+          addEventListener("scrollend", onScrollEnd);
+          
+          window.scrollTo({
+            top: window.innerHeight + 50,
+            behavior: "smooth",
+          });
+        });
+      </script>
+    <!-- Allows scrolling on the first page with the use of the button -->
+    <div class="scroll"></div>
+  </body>
+</html>

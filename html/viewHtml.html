@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML Source</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: monospace;
+        background-color: #1e1e1e;
+        color: #f8f8f8;
+        overflow: auto;
+      }
+      pre {
+        white-space: pre-wrap;
+        margin: 0;
+        padding: 0;
+      }
+      .html-code-viewer {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+      }
+      .message {
+        text-align: center;
+        margin-top: 30px;
+        line-height: 1.6;
+      }
+      .sourceLink {
+        display: block;
+        margin-top: 20px;
+        color: #6a9eff;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      .sourceLink:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="html-code-viewer">
+      <h3>HTML Source</h3>
+      <pre id="codeDisplay"></pre>
+      <div id="fileMessage" class="message" style="display: none">
+        <p>
+          When viewing local files, browsers prevent access to file contents due
+          to security restrictions.
+        </p>
+        <p>
+          You can click the link below to open the HTML file directly in a new
+          tab:
+        </p>
+        <a id="sourceLink" href="#" target="_blank" class="sourceLink"
+          >Open HTML File</a
+        >
+      </div>
+    </div>
+    <script>
+      // Utility function to check if we're running on a server or directly from file system
+      function isRunningOnServer() {
+        return window.location.protocol !== "file:";
+      }
+
+      // Get the source URL from query parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const sourceUrl = urlParams.get("source");
+
+      if (sourceUrl) {
+        // Always set up the source link regardless of environment
+        const sourceLink = document.getElementById("sourceLink");
+        sourceLink.href = sourceUrl;
+        sourceLink.textContent =
+          "Open HTML File: " + sourceUrl.split("/").pop();
+
+        if (isRunningOnServer()) {
+          // If on a server, try to fetch the content
+          fetch(sourceUrl)
+            .then((response) => response.text())
+            .then((html) => {
+              document.getElementById("codeDisplay").textContent = html;
+            })
+            .catch((err) => {
+              document.getElementById("codeDisplay").textContent =
+                "Error loading HTML: " + err.message;
+              document.getElementById("fileMessage").style.display = "block";
+            });
+        } else {
+          // If not on a server, show the message with the link
+          document.getElementById("codeDisplay").style.display = "none";
+          document.getElementById("fileMessage").style.display = "block";
+        }
+      } else {
+        document.getElementById("codeDisplay").textContent =
+          "No source URL provided.";
+      }
+    </script>
+  </body>
+</html>

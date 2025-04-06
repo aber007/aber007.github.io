@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nav</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="top" id="top">
+        <div class="nav_top">
+          <a href="../index.html">Home</a>
+          <a href="#">Sites</a>
+          <a href="#">Photoshop</a>
+        </div>
+        <div class="logo"></div>
+        <div class="search">
+          <input type="text" id="search" placeholder="Search..." />
+          <button id="search_button"></button>
+          <div class="searches" id="searches"></div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="sidebar">
+          <div class="nav_left" id="nav_left">
+            <div class="dot"></div>
+            <div class="arrow" id="arrow"></div>
+          </div>
+        </div>
+        <div class="main">
+          <div class="main_controls">
+            <button id="open_tab" class="control_button">
+              Open in New Tab
+            </button>
+          </div>
+          <div class="iframe_container">
+            <iframe
+              id="preview"
+              src="../sites/photoshop/"
+              frameborder="0"
+              class="site_preview"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <script>
+      function isRunningOnServer() {
+        return window.location.protocol !== "file:";
+      }
+      if (isRunningOnServer()) {
+        console.log("Running on server, loading files from server.");
+        // Run the sites.js script
+        const script = document.createElement("script");
+        script.src = "../sites.js";
+        script.onload = function () {
+          console.log("sites.js loaded successfully");
+          init();
+        };
+        script.onerror = function () {
+          console.error("Error loading sites.js");
+        };
+        document.head.appendChild(script);
+      } else {
+        console.log("Running locally, loading files from local system.");
+
+        addEventListener("DOMContentLoaded", function () {
+          // Check which html is active in the iframe
+          let previewcontent = document.getElementById("preview").src;
+          console.log("Found files:", foundFiles);
+          if (previewcontent.includes("default.html")) {
+            createButtons("index.htm");
+            // Get the control buttons and iframe
+            const viewHtmlButton = document.getElementById("view_html");
+            const viewCssButton = document.getElementById("view_css");
+            const openTabButton = document.getElementById("open_tab");
+            const iframe = document.getElementById("preview");
+
+            // Track current state
+            let viewingHtml = false;
+            let viewingCss = false;
+            let originalSrc = "";
+
+            // View HTML button functionality
+            viewHtmlButton.addEventListener("click", function () {
+              if (viewingHtml) {
+                // Switch back to normal view
+                iframe.src = originalSrc;
+                viewingHtml = false;
+                viewHtmlButton.textContent = "View HTML";
+              } else {
+                // Store original src if not already stored
+                if (!viewingCss) {
+                  originalSrc = iframe.src;
+                }
+
+                // Navigate to the HTML viewer page with the source URL as a parameter
+                iframe.src = `./html/viewHtml.html?source=${encodeURIComponent(
+                  originalSrc
+                )}`;
+
+                viewingHtml = true;
+                viewingCss = false;
+                viewHtmlButton.textContent = "Back to Site";
+                viewCssButton.textContent = "View CSS";
+              }
+            });
+
+            // View CSS button functionality
+            viewCssButton.addEventListener("click", function () {
+              if (viewingCss) {
+                // Switch back to normal view
+                iframe.src = originalSrc;
+                viewingCss = false;
+                viewCssButton.textContent = "View CSS";
+              } else {
+                // Store original src if not already stored
+                if (!viewingHtml) {
+                  originalSrc = iframe.src;
+                }
+
+                // Determine CSS path from HTML path
+                let cssPath = "";
+                if (originalSrc.includes("/html/")) {
+                  // For files in the html folder, look for CSS in the css folder
+                  cssPath = originalSrc
+                    .replace("/html/", "/css/")
+                    .replace(".html", ".css");
+                } else {
+                  // For other paths, try to navigate to CSS folder relative to the HTML file
+                  const basePath = originalSrc.substring(
+                    0,
+                    originalSrc.lastIndexOf("/")
+                  );
+                  cssPath = `${basePath}/css/style.css`;
+                }
+
+                // Navigate to the CSS viewer page with the CSS path as a parameter
+                iframe.src = cssPath;
+
+                viewingCss = true;
+                viewingHtml = false;
+                viewCssButton.textContent = "Back to Site";
+                viewHtmlButton.textContent = "View HTML";
+              }
+            });
+
+            // Open in new tab button functionality
+            openTabButton.addEventListener("click", function () {
+              // If we're viewing code, open the original page
+              const currentSrc =
+                viewingHtml || viewingCss ? originalSrc : iframe.src;
+              window.open(currentSrc, "_blank");
+            });
+          } else {
+            console.log("photoshop");
+            createButtons(".png");
+            // Get only the open tab button
+            const openTabButton = document.getElementById("open_tab");
+            // Open in new tab button functionality
+            openTabButton.addEventListener("click", function () {
+              // If we're viewing code, open the original page
+              const currentSrc = previewcontent;
+              window.open(currentSrc, "_blank");
+            });
+          }
+          load();
+        });
+
+        // Add event listeners for the control buttons
+        document.addEventListener("DOMContentLoaded", function () {});
+
+        // Static array of files instead of dynamic folder traversal
+        const foundFiles = [
+          // HTML files
+          "./sites/01a/index.htm",
+          "./sites/01a/htm/bjorn.htm",
+          "./sites/01a/htm/camping.htm",
+          "./sites/01a/htm/klitt.htm",
+          "./sites/01a/htm/vasa.htm",
+          "./sites/01a/htm/zorn.htm",
+          "./sites/01b/index.htm",
+          "./sites/01b/htm/about.htm",
+          "./sites/01b/htm/blog.htm",
+          "./sites/01b/htm/investment.htm",
+          "./sites/01b/htm/projects.htm",
+          "./sites/02a/index.htm",
+          "./sites/02b/index.htm",
+          "./sites/03a/index.htm",
+          "./sites/04a/index.htm",
+          "./sites/05a/index.htm",
+          "./sites/05a/htm/house.htm",
+          "./sites/05a/htm/road.htm",
+          "./sites/06a/index.htm",
+          "./sites/06a/htm/layout2.htm",
+          "./sites/06a/htm/layout3.htm",
+          "./sites/06a/htm/layout4.htm",
+          "./sites/06a/htm/layout5.htm",
+          "./sites/07a/index.htm",
+          "./sites/07b-layout/index.htm",
+          "./sites/08a/index.html",
+          "./sites/09a/index.html",
+          "./sites/10c/index.htm",
+          "./sites/10c/htm/about.htm",
+          "./sites/10c/htm/blog.htm",
+          "./sites/10c/htm/investment.htm",
+          "./sites/10c/htm/projects.htm",
+          "./sites/10e/index.htm",
+          "./sites/10e/htm/about.htm",
+          "./sites/10e/htm/blog.htm",
+          "./sites/10e/htm/investment.htm",
+          "./sites/10e/htm/projects.htm",
+          "./sites/grundsidan/index.htm",
+          "./sites/layoututmaning-1/index.html",
+          "./sites/layoututmaning-2/index.html",
+          "./sites/mol_12/index.htm",
+          "./sites/mol_12/html/delmol.htm",
+          "./sites/mol_12/html/kontakt.htm",
+          "./sites/mol_12/html/sverige.htm",
+          "./sites/prov_test/index.html",
+          "./sites/uppgift_1/index.htm",
+          "./sites/uppgift_1/htm/delmol.htm",
+          "./sites/uppgift_1/htm/kontakt.htm",
+          "./sites/uppgift_1/htm/sverige.htm",
+
+          // Photoshop PSD and PNG files
+          "./sites/mol_12/Main.psd",
+          "./sites/photoshop/Artboard-1.png",
+          "./sites/photoshop/Hors.png",
+          "./sites/photoshop/Iceclimbersmain.png",
+          "./sites/photoshop/Iceclimbersmain2.png",
+          "./sites/photoshop/Iceclimbersmain3.png",
+          "./sites/photoshop/svt_exempel.png",
+          "./sites/photoshop/TE23D_classroom.png",
+          "./sites/photoshop/TM-Design-Website.png",
+        ];
+
+        const createButtons = (type) => {
+          for (let file of foundFiles) {
+            console.log(file);
+            if (!file.includes(type)) continue;
+            // Add a link for each file found to nav_left div
+            let button = document.createElement("button");
+            // Set function to button
+            button.onclick = function () {
+              const iframe = document.getElementById("preview");
+              iframe.src = file; // Set the iframe source to the clicked file
+            };
+            if (file.includes("photoshop")) {
+              button.innerText = file.split("/")[3].split(".")[0]; // Extract the name from the path
+            } else {
+              button.innerText = file.split("/")[2]; // Extract the name from the path
+            }
+            button.className = "nav_button";
+
+            // Add the link to the nav_left div
+            let navLeft = document.getElementById("nav_left");
+            if (navLeft) {
+              navLeft.appendChild(button);
+            } else {
+              console.error("nav_left element not found.");
+            }
+          }
+        };
+
+        function getMenuLocation() {
+          // Get the margin-left value of the nav_left element
+          const navLeft = document.getElementById("nav_left");
+          const style = window.getComputedStyle(navLeft);
+          const marginLeft = parseInt(style.marginLeft);
+          return marginLeft;
+        }
+
+        function load() {
+          let navMenu = document.getElementById("nav_left");
+          let navLinks = navMenu.querySelectorAll("button");
+          let topbar = document.getElementById("top");
+          let dot = navMenu.querySelector(".dot");
+          let arrow = navMenu.querySelector(".arrow");
+          let offset = -150 + 50; //- button start pos + top margin
+          let search = document.getElementById("search");
+          let searchbox = document.getElementById("searches");
+
+          navMenu.addEventListener("mouseenter", () => {
+            document
+              .querySelector(":root")
+              .style.setProperty("--currentPosition", getMenuLocation() + "px");
+            navMenu.style.animation = "showMenu 0.5s ease-out forwards";
+            navMenu.style.overflowY = "auto";
+            arrow.style.opacity = 0;
+          });
+          topbar.addEventListener("mouseenter", () => {
+            document
+              .querySelector(":root")
+              .style.setProperty("--currentPosition", getMenuLocation() + "px");
+            navMenu.style.animation = "hideMenu 0.5s ease-out forwards";
+            navMenu.style.overflowY = "hidden";
+            arrow.style.opacity = 1;
+          });
+          // Create the searches field
+          addEventListener("resize", () => {
+            const x = search.offsetLeft - 1;
+            const y = search.offsetTop + search.offsetHeight / 2;
+            console.log("x: " + x + " y: " + y);
+            searchbox.style.left = x + "px";
+            searchbox.style.top = y + "px";
+          });
+          const x = search.offsetLeft - 1;
+          const y = search.offsetTop + search.offsetHeight / 2;
+          searchbox.style.left = x + "px";
+          searchbox.style.top = y + "px";
+
+          navLinks.forEach((button) => {
+            button.addEventListener("mouseenter", () => {
+              let rect = button.getBoundingClientRect();
+              let top =
+                rect.top -
+                navMenu.getBoundingClientRect().top +
+                topbar.clientHeight +
+                offset; // Calculate top position
+              // Set the dot position and opacity
+              dot.style.transform = `translateY(${top + rect.height / 2}px)`;
+              dot.style.opacity = 1; // Show the dot on hover
+            });
+            button.addEventListener("mouseleave", () => {
+              // Find which button has the same src as the iframe
+              let previewcontent = document.getElementById("preview").src;
+              dot.style.opacity = 0; // Hide the dot when none active
+              navLinks.forEach((btn) => {
+                if (previewcontent.includes(btn.innerText)) {
+                  // Set the dot position and opacity
+                  let rect = btn.getBoundingClientRect();
+                  let top =
+                    rect.top -
+                    navMenu.getBoundingClientRect().top +
+                    topbar.clientHeight +
+                    offset; // Calculate top position
+                  dot.style.transform = `translateY(${
+                    top + rect.height / 2
+                  }px)`;
+                  dot.style.opacity = 1; // Show the dot on hover
+                }
+              });
+            });
+          });
+        }
+
+        // JavaScript function to populate the first 10 search results in the `div.searches` as "a" elements
+        function populateSearchResults(results) {
+          const searchesDiv = document.querySelector("div.searches");
+          searchesDiv.innerHTML = ""; // Clear previous results
+
+          results.slice(0, 5).forEach((result) => {
+            const link = document.createElement("a");
+            link.href = result.url; // Assuming each result has a `url` property
+            link.target = "_blank"; // Open the URL in another tab
+            link.textContent = result.title; // Assuming each result has a `title` property
+            searchesDiv.appendChild(link);
+          });
+        }
+
+        // Modify the search input to filter results from the foundFiles variable
+        const searchInput = document.getElementById("search");
+        searchInput.addEventListener("input", (event) => {
+          const query = event.target.value.toLowerCase();
+          if (query.length < 1) {
+            populateSearchResults([]); // Clear results if query is too short
+            return;
+          }
+          const results = foundFiles.filter((file) =>
+            file.toLowerCase().includes(query)
+          );
+
+          // Populate the search results
+          populateSearchResults(
+            results.map((file) => ({
+              url: file,
+              title: file.split("/").slice(-2).join("/"), // Extract the file name as the title
+            }))
+          );
+        });
+
+        // Add event listener to the search input to show/hide the search results
+        searchInput.addEventListener("focus", () => {
+          const searchesDiv = document.querySelector("div.searches");
+          searchesDiv.style.display = "block"; // Show the search results
+        });
+        searchInput.addEventListener("blur", () => {
+          const searchesDiv = document.querySelector("div.searches");
+          setTimeout(() => {
+            searchesDiv.style.display = "none"; // Hide the search results after a delay
+          }, 200); // Delay to allow link clicks to register
+        });
+      }
+    </script>
+  </body>
+</html>

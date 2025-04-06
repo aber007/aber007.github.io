@@ -1,0 +1,83 @@
+body {
+    /* Global Values */
+    font-family: Verdana;
+    font-size: 10px;
+    color: black;
+}
+div {
+    /* Spacing between divs */
+    margin: 3px;
+}
+div.container {
+    /* Values for the container */
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 800px;
+    height: auto;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 13px 1px rgba(128, 128, 128, 0.5);
+    /* Center on x-axis */
+    margin: 0 auto;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    /* Specific font */
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    height: 80px;
+}
+.logooffset {
+    /* Logo indentation */
+    position: relative;
+    left: 70px;
+}
+.logobg {
+    /* Logo bg */
+    background-color: #63b0f1;
+}
+.navbar {
+    /* Styling for link div */
+    display: flex;
+    align-items: center;
+    background-color: #25f542;
+    height: 20px;
+    /* Reset top margin to remove double margin between divs */
+    margin-top: 0; 
+}
+a {
+    /* Link-text styling */
+    font-family: Verdana;
+    color: black;
+    font-size: 10px;
+    text-decoration: none;
+    margin-left: 35px;
+}
+div.content {
+    /* Main text size */
+    position: relative;
+    height: 600px;
+}
+.contenttext {
+    /* Text indentation */
+    position: relative;
+    left: 50px;
+    top: 30px;
+}
+div.footer {
+    /* Footer */
+    display: flex;
+    height: 20px;
+    background-color: #c9cff7;
+}
+.border {
+    /* Div border */
+    border: 1px solid #ccc;
+}
+.gray {
+    /* Default bg color */
+    background-color: #e1e1e1;
+}

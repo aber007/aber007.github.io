@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../favicon.png" />
+    <title>Kontakta Oss - Hållbar konsumtion och produktion - Global Vision</title>
+    <!-- Link to the CSS stylesheet -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <!-- Link to Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <!-- Link to Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+  </head>
+  <body class="kontakt_body">
+    <img src="../img/kontakt.png" alt="background" class="background" />
+    <div class="top_bar">
+      <div class="top_bar_extra"></div>
+      <!-- Navigation Links -->
+      <a class="home link" href="../index.htm" target="_self">Hem </a>
+      <a class="sverige link" href="sverige.htm" target="_self">Sverige </a>
+      <a class="delmal link" href="delmol.htm" target="_self">Delmål </a>
+      <a class="kontakt link false" href="" target="_self">Kontakt </a>
+    </div>
+    <div id="map" class="map"></div>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([59.54504815083999, 18.046881041034013], 13);
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        }).addTo(map);
+        // Add a marker
+        var marker = L.marker([59.54504815083999, 18.046881041034013]).addTo(map);
+        // Bind a popup to the marker
+        marker.bindPopup("<b>Global Vision</b>");
+    </script>
+  </body>
+</html>

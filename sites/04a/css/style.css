@@ -1,0 +1,66 @@
+body {
+  background-color: darkseagreen;
+  overflow-y:visible;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.whitebox {
+  background-color: #fff;
+  width: 678px;
+  height: 100vh;
+  min-height: 1200px;
+  position: absolute;
+  left: 41px;
+  z-index: 1;
+  box-shadow: #333 0 0 10px;
+}
+.logo {
+  position: absolute;
+  left: 60px;
+  top: 30px;
+  z-index: 2;
+}
+.pattern {
+  position: absolute;
+  background-image: url(../img/bg.png);
+  width: 20px;
+  height: 100vh;
+  min-height: 1200px;
+  left: 669px;
+  z-index: 2;
+}
+.linkbox1 {
+  position: absolute;
+  left: 60px;
+  top: 150px;
+  z-index: 2;
+}
+.linkbox2 {
+  position: absolute;
+  left: 200px;
+  top: 150px;
+  z-index: 2;
+}
+a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+a:hover,
+a:active {
+  color: #f00;
+}
+
+div {
+  font-family: Verdana;
+  font-size: 10px;
+  line-height: 17px;
+}
+.text {
+  position: absolute;
+  left: 350px;
+  top: 30px;
+  width: 300px;
+  z-index: 2;
+}

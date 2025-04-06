@@ -1,0 +1,27 @@
+body{
+    background-color: #cbed93;
+    margin: 0;
+    font-family: georgia;
+    font-size: 14px;
+}   
+::-webkit-scrollbar {
+    display: none;
+}
+
+div.container{
+    width: 800px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+div.text {
+    padding: 20px;
+    line-height: 20px;
+    z-index: 1;
+}
+a {
+    color: darkblue;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #999;
+    margin-right: 30px;
+}

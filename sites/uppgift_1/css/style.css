@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  background-repeat: no-repeat;
+  padding: 0;
+  font-family: "Trebuchet MS", sans-serif;
+  background-color: #bbbbbb;
+  overflow-x: hidden;
+}
+
+body.main_body {
+  overflow: hidden;
+  height: 54vw;
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  background-color: #bbbbbb;
+  z-index: -1;
+}
+
+.scroll {
+  /* Kinda long but would allow 1/500 x,y ratio */
+  height: 1000vw;
+}
+
+/* Location and style of Links */
+.link {
+  position: relative;
+  font-size: 1.5vw;
+  font-family: "Trebuchet MS";
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  text-decoration: none;
+  margin: 0px; /* This margin is the reason why the animation works. Why? I have no idea */
+  top: 3.2vw;
+}
+
+
+.link:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s;
+}
+.false {
+  color: rgb(0, 118, 8);
+  /* Prevent hover effect */
+  pointer-events: none;
+}
+/* Location of links */
+.kontakt {
+  position: absolute;
+  left: 55.2vw;
+}
+
+.delmal {
+  position: absolute;
+  left: 40.9vw;
+}
+
+.sverige {
+  position: absolute;
+  left: 25.9vw;
+}
+
+.home {
+  position: absolute;
+  left: 12vw;
+}
+
+.down {
+  /* Position right under background */
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  top: 100%;
+  background-color: transparent;
+  z-index: -1;
+}
+
+.bottom_bar {
+  position: relative;
+  top: 50px;
+  width: 100%;
+}
+.bottom {
+  color: transparent;
+}
+
+
+.arrow_img {
+  position: absolute;
+  left: 45vw;
+  top: 38vw;
+  /* Disable Selection */
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.arrow_img:hover {
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+
+.map {
+  left: 55.5vw;
+  top: 16vw;
+  height: 15vw;
+  width: 25vw;
+  border:2px double #000000;
+}

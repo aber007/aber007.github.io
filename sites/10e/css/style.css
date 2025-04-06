@@ -1,0 +1,80 @@
+a {
+  color: #000;
+  text-decoration: none;
+  padding: 3px;
+  margin: 2px;
+}
+
+body.home {
+  background-image: url("../img/home.png");
+}
+body.about {
+  background-image: url("../img/about.png");
+}
+body.blog {
+  background-image: url("../img/blog.png");
+}
+body.investment {
+  background-image: url("../img/investment.png");
+}
+body.projects {
+  background-image: url("../img/projects.png");
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-repeat: no-repeat;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navMenu {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navMenu a {
+  position: relative;
+  color: #000000;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:hover {
+  color: #fddb3a;
+}
+
+.navMenu .dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fddb3a;
+  border-radius: 50%;
+  opacity: 0;
+  top: 0; /* Adjusted from 50% to 0 */
+  left: -10px;
+  transform: translateY(
+    calc(var(--pos1, 0px) - 50%)
+  ); /* Dynamically aligns with links */
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:hover ~ .dot {
+  opacity: 1;
+}
